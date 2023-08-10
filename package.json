@@ -1,15 +1,16 @@
 {
   "name": "portproxy-tui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "npx ts-node src/index.ts",
+    "start": "npx ts-node src/index.ts connect ty48Mg1bGTzVROetLLGcdHzaQ2b7eXQuJp4UGQyeAcmN8bU3x8DeiafJUxtx",
     "dev": "nodemon",
     "build": "npm run clean && npx tsc --build",
     "clean": "rimraf dist",
     "help": "npx ts-node src/index.ts --help",
-    "compile": "npm run build && rimraf out && npx pkg dist/index.js --out-path out"
+    "compile": "npm run build && rimraf out && npx pkg dist/index.js --out-path out",
+    "host": "npx ts-node src/index.ts host 127.0.0.1:25565"
   },
   "keywords": [],
   "author": "",
@@ -23,7 +24,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "portproxy.js": "^0.0.1",
+    "portproxy.js": "^0.0.2",
     "yargs": "^17.7.2"
   }
 }

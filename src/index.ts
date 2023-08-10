@@ -3,6 +3,8 @@ import { hideBin } from "yargs/helpers";
 import { NetHost, NetClient } from "portproxy.js";
 import { randomPort } from "./utils";
 
+const DEFAULT_HOST = "wss://portproxy.eyezah.com";
+
 const argv = Yargs(hideBin(process.argv));
 
 argv.command("host <address:port>", "Host a service", yargs => {
@@ -26,7 +28,7 @@ argv.command("host <address:port>", "Host a service", yargs => {
 
     console.log(`Proxying '${address}:${port}'...`);
 
-    const host = new NetHost("ws://127.0.0.1:8080", address, port);
+    const host = new NetHost(DEFAULT_HOST, address, port);
     host.onSessionStart(details => {
         console.log(`Service is now available!`);
         console.log(`Session ID: \x1b[33m${details.id}`);
@@ -38,6 +40,7 @@ argv.command("host <address:port>", "Host a service", yargs => {
 
     host.onClose(() => {
         console.log("Disconnected from PortProxy.");
+        process.exit();
     });
 });
 
@@ -49,7 +52,7 @@ argv.command("connect <session>", "Connect to a session", yargs => {
     const sessionId = argv.session as string;
     const port = argv.port as number || await randomPort();
     
-    const client = new NetClient("ws://127.0.0.1:8080", sessionId, port);
+    const client = new NetClient(DEFAULT_HOST, sessionId, port);
 
     console.log("Connecting to session...");
     let connected = false;
