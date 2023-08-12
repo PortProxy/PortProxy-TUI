@@ -24,7 +24,7 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "portproxy.js": "^0.0.2",
+    "portproxy.js": "^0.0.3",
     "yargs": "^17.7.2"
   }
 }
